@@ -1,40 +1,35 @@
-NAME		= test
+NAME		= libasm.a
 BUILD_DIR	= build
 SRCS_DIR	= src
-LINK_FLAGS	= -L../ -lasm
-CC			= cc
-CFLAGS		= -I./include
+ASM			= nasm
+ASM_FLAGS	= -f elf64
 
-SRC 	= main.c
+SRC 	= ft_write.s
 
-OBJ 	= $(SRC:.c=.o)
+OBJ 	= $(SRC:.s=.o)
 
 SRCS	= $(addprefix $(SRCS_DIR)/,$(SRC))
 OBJS	= $(addprefix $(BUILD_DIR)/,$(OBJ))
 
--include ../build/deps.mk
-BUILD_DEP	= $(addprefix ../,$(BUILD_DEP_INC)) \
-				Makefile
+BUILD_DEP	= Makefile $(SRCS)
 
 all: $(NAME)
 
 $(NAME): $(BUILD_DIR) $(OBJS)
-	@ make -s -C ..
-	@ $(CC) $(OBJS) -o $(NAME) $(CFLAGS) $(LINK_FLAGS)
+	echo "BUILD_DEP_INC=$(BUILD_DEP)" > $(BUILD_DIR)/deps.mk
+	ar -rcs $(NAME) $(OBJS)
 
 $(BUILD_DIR):
-	@ mkdir -p $(BUILD_DIR)
+	mkdir -p $(BUILD_DIR)
 
-$(BUILD_DIR)/%.o : $(SRCS_DIR)/%.c $(BUILD_DEP)
-	@ $(CC) -c $< -o $@ $(CFLAGS)
+$(BUILD_DIR)/%.o : $(SRCS_DIR)/%.s $(BUILD_DEP)
+	$(ASM) $(ASM_FLAGS) $< -o $@
 
 clean:
-	@ make -s -C .. clean
-	@ rm -f $(NAME)
+	rm -f $(NAME)
 
 fclean: clean
-	@ make -s -C .. fclean
-	@ rm -rf $(BUILD_DIR)
+	rm -rf $(BUILD_DIR)
 
 re: fclean all
 
