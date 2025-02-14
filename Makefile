@@ -1,7 +1,7 @@
 NAME		= test
 BUILD_DIR	= build
 SRCS_DIR	= src
-LINK_FLAGS	= -L../ -lasm -lc -fPIE -masm=intel
+LINK_FLAGS	= -L../ -lasm
 CC			= cc
 CFLAGS		= -I./include
 
