@@ -3,18 +3,18 @@ bits 64
 extern __errno_location
 
 section .text
-	global	ft_write
+	global	ft_read
 
-ft_write:
-	; ssize_t write(int fd, const void buf[.count], size_t count);
-	mov		rax, 1						; write(...)
+ft_read:
+	; ssize_t read(int fd, void buf[.count], size_t count);
+	mov		rax, 0						; read(...)
 	;		rdi							  fd
 	;		rsi							  &buf
 	;		rdx							  count
 	syscall
 	
 	; error check
-	cmp		rax, 0						; if (write(...) < 0) goto error;
+	cmp		rax, 0						; if (read(...) < 0) goto error;
 	jl		_error
 	ret
 

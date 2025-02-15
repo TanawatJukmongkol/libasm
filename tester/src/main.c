@@ -1,7 +1,11 @@
 #include "libasm.h"
+#include <stdio.h>
+#include <unistd.h>
+#include <string.h>
 
 int main()
 {
-	ft_write(1, "abc\n" , 4);
+	printf("%d\n", ft_strcmp("a", ""));
+	printf("%d\n", strcmp("a", ""));
 	return 0;
 }

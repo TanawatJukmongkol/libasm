@@ -1,9 +1,9 @@
 NAME		= test
 BUILD_DIR	= build
 SRCS_DIR	= src
-LINK_FLAGS	= -L../ -lasm
+LINK_FLAGS	= -L../ -lasm -z noexecstack
 CC			= cc
-CFLAGS		= -I./include
+CFLAGS		= -I./include #-Wall -Werror -Wextra
 
 SRC 	= main.c
 
@@ -20,21 +20,21 @@ all: $(NAME)
 
 $(NAME): $(BUILD_DIR) $(OBJS)
 	@ make -s -C ..
-	@ $(CC) $(OBJS) -o $(NAME) $(CFLAGS) $(LINK_FLAGS)
+	$(CC) $(OBJS) -o $(NAME) $(CFLAGS) $(LINK_FLAGS)
 
 $(BUILD_DIR):
-	@ mkdir -p $(BUILD_DIR)
+	mkdir -p $(BUILD_DIR)
 
 $(BUILD_DIR)/%.o : $(SRCS_DIR)/%.c $(BUILD_DEP)
-	@ $(CC) -c $< -o $@ $(CFLAGS)
+	$(CC) -c $< -o $@ $(CFLAGS)
 
 clean:
 	@ make -s -C .. clean
-	@ rm -f $(NAME)
+	rm -f $(NAME)
 
 fclean: clean
 	@ make -s -C .. fclean
-	@ rm -rf $(BUILD_DIR)
+	rm -rf $(BUILD_DIR)
 
 re: fclean all
 
