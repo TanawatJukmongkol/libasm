@@ -6,7 +6,7 @@ LINK_FLAGS	= -L../ -lasm -z noexecstack
 CC			= cc
 CFLAGS		= #-Wall -Werror -Wextra
 
-HEADERS	= libasm.h utils.h tests.h
+HEADERS	= libasm.h utils.h tests.h ansi_color.h
 
 SRC 	= main.c \
 $(addprefix utils/, \

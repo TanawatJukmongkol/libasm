@@ -1,18 +1,19 @@
 #include "utils.h"
+#include "ansi_color.h"
 
 int assert_int(int res, int expect, char *title, char *msg)
 {
     char    buff[100];
     if (res == expect)
     {
-        printf("[OK] %s assertion passed!\n", title);
+        printf(GRN "[OK] %s " CYN "assertion passed!\n" CRESET, title);
         return 0;
     }
     if (!msg)
     {
-        sprintf(buff, "expect %d.", expect);
+        sprintf(buff, "expect %d, but got %d.", expect, res);
         msg = buff;
     }
-    printf("[KO] %s assertion failed: %s\n", title, msg);
+    printf(RED "[OK] %s " YEL "assertion failed: %s\n", title, msg);
     return 1;
 }

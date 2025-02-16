@@ -1,3 +1,5 @@
+#include <fcntl.h>
+#include <errno.h>
 #include "tests.h"
 
 int tester_read()
@@ -8,6 +10,7 @@ int tester_read()
 
     printf("-- ft_read --\n");
 
+    // Invalid FD
     assert_int (
         ft_read(-1, result, 1000), -1,
         "invalid fd test (< 0)", NULL
@@ -22,9 +25,17 @@ int tester_read()
 
     assert_int(errno, EBADF, "errno test 2", "expected EBADF");
 
+    // Invalid directory
+    fd = open("test_files", O_RDONLY);
+    assert_int (
+        ft_read(fd, result, 1000), -1,
+        "invalid directory", NULL
+    );
+    assert_int(errno, EISDIR, "errno test invalid directory", "expected EISDIR");
+
     // example file
     fd = open("test_files/random_bytes", O_RDONLY);
-    size = read(fd, expect, 1000), res_size;
+    size = read(fd, expect, 1000);
     expect[size] = '\0';
     close(fd);
 
