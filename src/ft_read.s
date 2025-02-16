@@ -22,10 +22,8 @@ _error:
 	mov		rdi, rax					; copy fd into rax
 
 	; errno bullshit
-	; how do you detect dir invalid read T^T
 	call	__errno_location wrt ..plt	; call __errno_location() to get errno address
 	mov		[rax], rdi					; set errno value
 
 	mov		rax, -1						; return -1; 
 	ret
-
