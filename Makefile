@@ -8,7 +8,8 @@ SRC 	= \
 		ft_write.s \
 		ft_read.s \
 		ft_strlen.s \
-		ft_strcmp.s
+		ft_strcmp.s \
+		ft_strcpy.s
 
 OBJ 	= $(SRC:.s=.o)
 
@@ -24,7 +25,7 @@ $(NAME): $(BUILD_DIR) $(OBJS)
 	ar -rcs $(NAME) $(OBJS)
 
 $(BUILD_DIR):
-	mkdir -p $(BUILD_DIR)
+	mkdir -p $(shell dirname $(OBJS))
 
 $(BUILD_DIR)/%.o : $(SRCS_DIR)/%.s $(BUILD_DEP)
 	$(ASM) $(ASM_FLAGS) $< -o $@

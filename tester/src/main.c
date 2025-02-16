@@ -1,11 +1,7 @@
-#include "libasm.h"
-#include <stdio.h>
-#include <unistd.h>
-#include <string.h>
+#include "tests.h"
 
 int main()
 {
-	printf("%d\n", ft_strcmp("a", ""));
-	printf("%d\n", strcmp("a", ""));
+	tester_read();
 	return 0;
 }

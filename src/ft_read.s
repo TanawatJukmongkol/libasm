@@ -1,9 +1,10 @@
 bits 64
 
-extern __errno_location
+%define EBADF	9
 
 section .text
 	global	ft_read
+	extern __errno_location
 
 ft_read:
 	; ssize_t read(int fd, void buf[.count], size_t count);
@@ -23,10 +24,10 @@ _error:
 	mov		rdi, rax					; copy fd into rax
 	
 	; errno bullshit
-	mov		rdi, 0						; sets arg0 to NULL
+	mov		rdi, EBADF					; sets arg0 to EBADF
 	call	__errno_location wrt ..plt	; call __errno_location() to get errno address
 	mov		[rax], rdi					; set errno value
-	
+
 	mov		rax, -1						; return -1; 
 	ret
 

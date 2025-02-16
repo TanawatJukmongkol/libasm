@@ -1,20 +1,32 @@
 NAME		= test
 BUILD_DIR	= build
 SRCS_DIR	= src
+INCLUDE_DIR	= include
 LINK_FLAGS	= -L../ -lasm -z noexecstack
 CC			= cc
-CFLAGS		= -I./include #-Wall -Werror -Wextra
+CFLAGS		= #-Wall -Werror -Wextra
 
-SRC 	= main.c
+HEADERS	= libasm.h utils.h tests.h
+
+SRC 	= main.c \
+$(addprefix utils/, \
+	assert_int.c \
+	assert_str.c \
+) \
+$(addprefix tests/, \
+	ft_read.c \
+)
 
 OBJ 	= $(SRC:.c=.o)
 
 SRCS	= $(addprefix $(SRCS_DIR)/,$(SRC))
 OBJS	= $(addprefix $(BUILD_DIR)/,$(OBJ))
 
+CFLAGS		+= -I$(INCLUDE_DIR)
 -include ../build/deps.mk
 BUILD_DEP	= $(addprefix ../,$(BUILD_DEP_INC)) \
-				Makefile
+			$(addprefix $(INCLUDE_DIR)/, $(HEADERS)) \
+			Makefile
 
 all: $(NAME)
 
@@ -23,7 +35,7 @@ $(NAME): $(BUILD_DIR) $(OBJS)
 	$(CC) $(OBJS) -o $(NAME) $(CFLAGS) $(LINK_FLAGS)
 
 $(BUILD_DIR):
-	mkdir -p $(BUILD_DIR)
+	mkdir -p $(shell dirname $(OBJS))
 
 $(BUILD_DIR)/%.o : $(SRCS_DIR)/%.c $(BUILD_DEP)
 	$(CC) -c $< -o $@ $(CFLAGS)
