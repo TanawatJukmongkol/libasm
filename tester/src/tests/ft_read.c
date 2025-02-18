@@ -8,7 +8,7 @@ int tester_read()
     char    result[1000];
     int     fd, size, res_size;
 
-    printf("-- ft_read --\n");
+    printf("\n-- ft_read --\n");
 
     // Invalid FD
     assert_int (

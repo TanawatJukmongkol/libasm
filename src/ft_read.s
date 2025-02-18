@@ -11,7 +11,6 @@ ft_read:
 	;		rsi							  &buf
 	;		rdx							  count
 	syscall
-	
 	; error check
 	cmp		rax, 0						; if (read(...) < 0) goto error;
 	jl		_error
@@ -21,7 +20,6 @@ _error:
 	neg		rax							; get return value as unsigned int
 	mov		rdi, rax					; copy fd into rax
 
-	; errno bullshit
 	call	__errno_location wrt ..plt	; call __errno_location() to get errno address
 	mov		[rax], rdi					; set errno value
 

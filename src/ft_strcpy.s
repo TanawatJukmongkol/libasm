@@ -6,9 +6,9 @@ section .text
 ft_strcpy:
 	mov		rdx, 0			; i = 0;
 
-	cmp		rdi, 0			; if (dst[i] == NULL) return dst;
+	cmp		rdi, 0			; if (dst[i] == NULL) return NULL;
 	je		_error
-	cmp		rsi, 0			; if (src[i] == NULL) return dst;
+	cmp		rsi, 0			; if (src[i] == NULL) return NULL;
 	je		_error
 
 	jmp		_loop

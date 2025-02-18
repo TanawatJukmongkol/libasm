@@ -5,8 +5,8 @@ section .text
 
 ft_strlen:
 	; size_t strlen(const char *s);
-	; cmp		rdi, 0					; if(s == NULL) goto error;
-	; je		_error
+	cmp		rdi, 0					; if(s == NULL) goto error;
+	je		_error
 	; init counter
 	mov		rax, -1					; i = 0
 	jmp		_loop
@@ -18,6 +18,6 @@ _loop:								; while (true)
 	jne		_loop
 	ret
 
-; _error:
-; 	mov		rax, -1					; return -1; 
-; 	ret
+_error:
+	mov		rax, 0					; return 0; 
+	ret
