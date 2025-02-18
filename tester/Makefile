@@ -6,10 +6,16 @@ LINK_FLAGS	= -L../ -lasm -z noexecstack
 CC			= cc
 CFLAGS		= #-Wall -Werror -Wextra
 GITIGNORE	= "*"
-GITINCLUDE	= Makefile README.md $(SRCS)
+GITINCLUDE	= \
+			  Makefile \
+			  README.md \
+			  $(addprefix test_files/, \
+			    random_bytes \
+			  ) \
+			  $(HEADERS) \
+			  $(SRCS)
 
-HEADERS	= libasm.h utils.h tests.h ansi_color.h
-
+HEADER	= libasm.h utils.h tests.h ansi_color.h
 SRC 	= main.c \
 $(addprefix utils/, \
 	assert_fn.c \
@@ -29,11 +35,12 @@ OBJ 	= $(SRC:.c=.o)
 
 SRCS	= $(addprefix $(SRCS_DIR)/,$(SRC))
 OBJS	= $(addprefix $(BUILD_DIR)/,$(OBJ))
+HEADERS	= $(addprefix $(INCLUDE_DIR)/, $(HEADER))
 
 CFLAGS		+= -I$(INCLUDE_DIR)
 -include ../build/deps.mk
 BUILD_DEP	= $(addprefix ../,$(BUILD_DEP_INC)) \
-			$(addprefix $(INCLUDE_DIR)/, $(HEADERS)) \
+			$(HEADERS) \
 			Makefile
 
 all: $(NAME)
