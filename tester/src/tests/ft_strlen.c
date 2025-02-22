@@ -1,6 +1,8 @@
-#include "utils.h"
+#include <stdio.h>
 #include <signal.h>
 #include <stdbool.h>
+#include "utils.h"
+#include "libasm.h"
 
 bool	sigv = false;
 

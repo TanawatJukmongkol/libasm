@@ -1,3 +1,5 @@
+#include <stdio.h>
+#include <string.h>
 #include "utils.h"
 #include "ansi_color.h"
 

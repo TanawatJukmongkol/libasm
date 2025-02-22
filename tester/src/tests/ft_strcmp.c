@@ -1,5 +1,9 @@
+#include <stdio.h>
+#include <fcntl.h>
+#include "tests.h"
 #include "utils.h"
-#include <stdbool.h>
+#include "libasm.h"
+
 
 static bool    less_than_zero(void *res)
 {

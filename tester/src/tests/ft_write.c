@@ -1,6 +1,9 @@
+#include <stdio.h>
 #include <fcntl.h>
 #include <errno.h>
 #include "tests.h"
+#include "utils.h"
+#include "libasm.h"
 
 int tester_write()
 {

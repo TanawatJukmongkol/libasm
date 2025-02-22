@@ -1,7 +1,8 @@
+#include <stdio.h>
+#include <fcntl.h>
+#include "tests.h"
 #include "utils.h"
-#include <stdbool.h>
-#include <stdlib.h>
-#include <string.h>
+#include "libasm.h"
 
 char    *src = "Meme 42";
 

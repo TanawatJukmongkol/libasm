@@ -1,7 +1,9 @@
-#include "utils.h"
-#include <stdbool.h>
-#include <stdlib.h>
+#include <stdio.h>
+#include <fcntl.h>
 #include <string.h>
+#include "tests.h"
+#include "utils.h"
+#include "libasm.h"
 
 int	tester_strcpy()
 {

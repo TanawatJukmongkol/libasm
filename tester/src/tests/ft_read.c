@@ -1,6 +1,9 @@
+#include <stdio.h>
 #include <fcntl.h>
 #include <errno.h>
 #include "tests.h"
+#include "utils.h"
+#include "libasm.h"
 
 int tester_read()
 {
@@ -27,6 +30,8 @@ int tester_read()
 
     // Invalid directory
     fd = open("test_files", O_RDONLY);
+    if (fd < 0)
+        return 1;
     assert_int (
         ft_read(fd, result, 1000), -1,
         "invalid directory", NULL
@@ -36,12 +41,16 @@ int tester_read()
 
     // example file
     fd = open("test_files/random_bytes", O_RDONLY);
+    if (fd < 0)
+        return 1;
     size = read(fd, expect, 1000);
     expect[size] = '\0';
     close(fd);
 
     // result file
     fd = open("test_files/random_bytes", O_RDONLY);
+    if (fd < 0)
+        return 1;
     res_size = ft_read(fd, result, 1000);
     result[res_size] = '\0';
     assert_int (
