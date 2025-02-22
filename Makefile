@@ -5,6 +5,8 @@ ASM			= nasm
 ASM_FLAGS	= -f elf64
 GITIGNORE	= "*"
 GITINCLUDE	= \
+			  .idx/dev.nix \
+			  .idx/README.md \
 			  Makefile \
 			  README.md \
 			  tester \
