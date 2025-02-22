@@ -32,6 +32,7 @@ int tester_read()
         "invalid directory", NULL
     );
     assert_int(errno, EISDIR, "errno test invalid directory", "expected EISDIR");
+    close(fd);
 
     // example file
     fd = open("test_files/random_bytes", O_RDONLY);

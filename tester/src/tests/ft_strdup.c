@@ -21,27 +21,32 @@ int	tester_strdup()
         res, check_new_addr,
         "new address of duplicated string", "new address should not be NULL, and should return the malloc buffer"
     );
-    free(res);
+    if (res)
+        free(res);
 
     res = ft_strdup(src);
     assert_str (
         res, src,
         "copied value of strdup", NULL
     );
-    free(res);
+    if (res)
+        free(res);
 
     res = ft_strdup("");
     assert_str (
         res, "",
         "copied value of empty string", NULL
     );
-    free(res);
+    if (res)
+        free(res);
 
     res = ft_strdup(NULL);
     assert_str (
         res, NULL,
         "copied value of NULL", NULL
     );
+    if (res)
+        free(res);
 
     return 0;
 }
