@@ -23,6 +23,7 @@
     extensions = [
       # "vscodevim.vim"
       "llvm-vs-code-extensions.vscode-clangd"
+      "13xforever.language-x86-64-assembly"
     ];
     # Enable previews
     previews = {
