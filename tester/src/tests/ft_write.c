@@ -1,6 +1,5 @@
 #include <fcntl.h>
 #include <errno.h>
-#include <uchar.h>
 #include "tests.h"
 
 int tester_write()
