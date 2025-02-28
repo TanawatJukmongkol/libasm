@@ -4,10 +4,9 @@
   # Which nixpkgs channel to use.
   channel = "stable-24.05"; # or "unstable"
   # Use https://search.nixos.org/packages to find packages
-  imports = [
-  ];
+  # imports = [
+  # ];
   packages = with pkgs; [
-    home-manager
     nasm
     clang
     clang-tools
